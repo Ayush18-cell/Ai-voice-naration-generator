@@ -1,0 +1,1 @@
+Welcome to the AI Voice Narration Generator. This is a sample script to demonstrate the voice generation capabilities. You can enter your own text or upload a text file to create narrated audio using Google Text-to-Speech or ElevenLabs AI voices.

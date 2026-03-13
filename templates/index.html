@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Voice Narration Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="theme-toggle">
+        <button id="theme-switcher">🌙 Dark Mode</button>
+    </div>
+    <div class="container">
+        <h1>🎤 AI Voice Narration Generator</h1>
+        <p class="subtitle">Transform your text into lifelike speech with AI-powered voices</p>
+        <form action="/generate" method="post" class="form-card">
+            <h2>Generate from Text</h2>
+            <textarea name="text" placeholder="Enter text to narrate..." required maxlength="50000"></textarea>
+            <div class="form-row">
+                <select name="voice_type" id="voice_type">
+                    <option value="gtts">Google Text-to-Speech</option>
+                    <option value="elevenlabs">ElevenLabs AI Voice</option>
+                </select>
+                <input type="text" name="voice_id" placeholder="ElevenLabs Voice ID (required for ElevenLabs)" id="voice_id_input">
+            </div>
+            <button type="submit" class="btn-primary">🎵 Generate Voice</button>
+        </form>
+        <form action="/upload" method="post" enctype="multipart/form-data" class="form-card">
+            <h2>Upload Text File</h2>
+            <input type="file" name="file" accept=".txt,.md,.text,.csv,.pdf,.docx" required>
+            <div class="form-row">
+                <select name="voice_type" id="voice_type_upload">
+                    <option value="gtts">Google Text-to-Speech</option>
+                    <option value="elevenlabs">ElevenLabs AI Voice</option>
+                </select>
+                <input type="text" name="voice_id" placeholder="ElevenLabs Voice ID (required for ElevenLabs)" id="voice_id_upload">
+            </div>
+            <button type="submit" class="btn-primary">📁 Upload and Generate</button>
+        </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
